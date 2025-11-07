@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sirf Tumhare Liye, Heena</title>
+    <style>
+        /* General Setup */
+        body {
+            background: linear-gradient(135deg, #1A0A26 0%, #301940 100%); /* Dark, deep purple for otherworldly feel */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            overflow: hidden; /* Hide anything outside the screen */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #E6E6FA; /* Light Lavender Text */
+        }
+
+        /* Message Container Styling */
+        #message-container {
+            text-align: center;
+            max-width: 800px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05); /* Slight transparent background */
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(230, 230, 250, 0.2); /* Soft lavender glow */
+            z-index: 10; /* Keep message above the petals */
+            animation: fadeIn 5s ease-out forwards;
+            opacity: 0;
+        }
+
+        /* Message Text */
+        #message-container p {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            margin: 20px 0;
+            text-shadow: 0 0 10px #E6E6FA; /* Extra glow for the text */
+        }
+
+        /* Highlight for Name and Hearts */
+        #message-container h1 {
+            font-size: 3rem;
+            color: #C3B1E1; /* Muted Lavender/Lilac for name */
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px #C3B1E1;
+        }
+
+        /* Animation for Text Fade-In */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Rose Petals Animation --- */
+
+        .petal {
+            position: absolute;
+            background: radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.9) 0%, #E6E6FA 20%, #C3B1E1 70%, #9370DB 100%); /* Lavender/Lilac gradient for depth */
+            border-radius: 50% 0 50% 50% / 60% 30% 70% 40%; /* Petal Shape */
+            box-shadow: 0 0 5px rgba(230, 230, 250, 0.5);
+            pointer-events: none; /* Ignore mouse events */
+        }
+
+        /* Keyframes for the Floating and Twirling Petals */
+        @keyframes floatPetal {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translate(var(--x-end), 100vh) rotate(var(--r-end)); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="message-container">
+        <h1>Heena...</h1>
+        <p>tu seriously jaanti bhi nahi kya karti hai mujhpe.</p>
+        <p>Ek “hi” bolti hai, aur pura din suddenly accha lagne lagta hai.</p>
+        <p>Jaise tere paas koi secret superpower hai — bina kuch kiye sab theek kar deti hai.</p>
+        <p>Aur jab tu hasti hai na… bas, game over.</p>
+        <p>Kuch bolne ka mann hi nahi karta, bas dekhte rehna chahta hoon.</p>
+        <p>Kabhi kabhi lagta hai tu kisi aur duniya ki hai — kyunki itni pyaari... Itni pyaari is duniya ki toh nahi ho sakti <span style="color: #FF69B4; font-size: 1.5em; text-shadow: 0 0 10px #FF69B4;">💞💓</span>.</p>
+        <p style="margin-top: 40px;">Sach bolu?</p>
+        <p style="font-weight: bold; font-size: 1.8rem; color: #C3B1E1;">Tu meri sabse pyari problem ban gayi hai,</p>
+        <p style="font-weight: bold; font-size: 1.8rem; color: #C3B1E1;">aur mujhe iska solution kabhi chahiye hi nahi.</p>
+        <p style="margin-top: 50px; font-size: 1.2rem;">— Tumhara (Your Name)</p>
+    </div>
+
+    <script>
+        const container = document.body;
+        const numberOfPetals = 40; /* Aap petals ki sankhya badha ya ghata sakte hain */
+
+        /* Function to generate a random number between min and max */
+        const random = (min, max) => Math.random() * (max - min) + min;
+
+        for (let i = 0; i < numberOfPetals; i++) {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+
+            /* Random size and initial position */
+            const size = random(15, 30);
+            const startX = random(-10, 110); /* Start from slightly outside screen */
+            const duration = random(15, 25);
+            const delay = random(0, 10);
+
+            /* Random end position and rotation for the floatPetal animation */
+            const endX = random(-50, 50) + 'px';
+            const endR = random(360, 720) + 'deg';
+
+            /* Apply CSS styles */
+            petal.style.width = `${size}px`;
+            petal.style.height = `${size * 1.5}px`;
+            petal.style.left = `${startX}vw`;
+            petal.style.top = `-${random(0, 10)}vh`; /* Start from top */
+
+            /* Apply animation properties using CSS variables */
+            petal.style.setProperty('--x-end', endX);
+            petal.style.setProperty('--r-end', endR);
+            petal.style.animation = `floatPetal ${duration}s linear ${delay}s infinite`;
+
+            container.appendChild(petal);
+        }
+    </script>
+
+</body>
+</html>
